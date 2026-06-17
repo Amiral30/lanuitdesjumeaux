@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
@@ -36,7 +37,9 @@
                 </div>
             </div>
 
-            <p class="instruction">Personnalisez votre badge en cliquant sur le cercle ci-dessous ⬇️</p>
+            <p class="instruction">Personnalisez votre badge en cliquant sur le cercle ci-dessous 
+                <i class="fas fa-arrow-down"></i>
+            </p>
         </header>
 
         <!-- L'espace de travail WYSIWYG -->
@@ -53,7 +56,7 @@
             <!-- Couche 3 : La zone cliquable invisible par dessus (pour déclencher l'upload) -->
             <div class="click-zone" id="click-zone" title="Cliquez pour ajouter une photo">
                 <div class="placeholder-content" id="placeholder-content">
-                    <span class="plus-icon">+</span>
+                    <i class="fas fa-camera plus-icon"></i><br>
                     <span class="text">Ajouter<br>votre photo</span>
                 </div>
             </div>
@@ -62,7 +65,10 @@
 
         <div class="actions">
             <input type="file" id="image-upload" accept="image/png, image/jpeg, image/jpg" hidden>
-            <button id="btn-export" class="btn primary-btn" disabled>Télécharger mon affiche ⬇️</button>
+            <button id="btn-export" class="btn primary-btn" disabled>
+                <span>Télécharger mon affiche</span>
+                <i class="fas fa-download"></i>
+            </button>
         </div>
 
     </div>

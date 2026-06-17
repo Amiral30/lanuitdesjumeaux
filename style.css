@@ -234,6 +234,10 @@ header .instruction {
 }
 
 .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     padding: 20px 40px;
     border: none;
     border-radius: 40px;

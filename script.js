@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // On active le bouton d'export
         btnExport.removeAttribute('disabled');
-        btnExport.textContent = 'Télécharger mon affiche ⬇️';
+        btnExport.innerHTML = '<span>Télécharger mon affiche</span> <i class="fas fa-download"></i>';
 
         // On ferme la modale
         modal.setAttribute('hidden', 'true');
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnExport.addEventListener('click', () => {
         if (!croppedImageURL) return;
         
-        btnExport.textContent = 'Génération en cours...';
+        btnExport.innerHTML = '<span>Génération en cours...</span> <i class="fas fa-circle-notch fa-spin"></i>';
 
         // L'image de fond est DÉJÀ chargée à l'écran, pas besoin de la recharger
         const width = posterBg.naturalWidth;
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error(err);
             }
             
-            btnExport.textContent = 'Télécharger mon affiche ⬇️';
+            btnExport.innerHTML = '<span>Télécharger mon affiche</span> <i class="fas fa-download"></i>';
         };
         userPhoto.src = croppedImageURL;
     });
