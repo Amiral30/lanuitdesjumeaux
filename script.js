@@ -144,9 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Export final
             try {
+                const randomId = Math.floor(Math.random() * 9000) + 1000;
                 const dataURL = exportCanvas.toDataURL('image/png', 1.0);
                 const link = document.createElement('a');
-                link.download = 'Affiche_Concert_Marial.png';
+                link.download = `Badge_Jumeaux_${randomId}.png`;
                 link.href = dataURL;
                 link.click();
             } catch (err) {
