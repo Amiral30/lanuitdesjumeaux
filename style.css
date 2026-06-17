@@ -1,0 +1,342 @@
+:root {
+    --primary-color: #f7941d;
+    --primary-hover: #e08316;
+    --bg-color: #082845;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    
+    /* Coordonnées du cercle sur l'affiche "La Grande NUIT DES JUMEAUX" */
+    --circle-top: 10.7%;
+    --circle-left: 56%;
+    --circle-size: 40.5%; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: #04101b url('platform_bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Superposition sombre pour lisibilité et contraste */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(4, 16, 27, 0.2) 0%, rgba(4, 16, 27, 0.8) 100%);
+    z-index: -1;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: var(--glass-bg);
+    padding: 40px;
+    border-radius: 30px;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    background: linear-gradient(to right, #ffffff, var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+header .theme {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+/* COUNTDOWN STYLE */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+}
+
+.countdown-item span {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.countdown-item label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+header .instruction {
+    opacity: 0.9;
+    font-size: 1rem;
+    background: var(--primary-color);
+    padding: 15px 25px;
+    border-radius: 40px;
+    display: inline-block;
+    box-shadow: 0 10px 20px rgba(247, 148, 29, 0.3);
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* WORKSPACE */
+.poster-workspace {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    background: #fff;
+    transition: transform 0.3s ease;
+}
+
+.poster-workspace:hover {
+    transform: scale(1.01);
+}
+
+.poster-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Couche 1 : Photo recadrée */
+.user-photo-layer {
+    position: absolute;
+    top: var(--circle-top);
+    left: var(--circle-left);
+    width: var(--circle-size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.final-user-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Couche 3 : Zone interactive */
+.click-zone {
+    position: absolute;
+    top: var(--circle-top);
+    left: var(--circle-left);
+    width: var(--circle-size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    z-index: 4;
+    cursor: pointer;
+    background: transparent; /* Totalement invisible */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.click-zone:hover {
+    background: rgba(255, 255, 255, 0.05); /* Très léger reflet pour indiquer l'action, presque invisible */
+}
+
+.placeholder-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+.plus-icon {
+    font-size: 3.5rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: -5px;
+    color: var(--primary-color);
+}
+
+.placeholder-content .text {
+    color: #082845; /* Bleu très sombre pour être lisible sur le fond blanc de l'affiche */
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Halo blanc pour briller même sur fond sombre */
+}
+
+/* ACTIONS */
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    padding: 20px 40px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-color), #ffb347);
+    color: white;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 30px rgba(247, 148, 29, 0.4);
+}
+
+.primary-btn:hover:not([disabled]) {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(247, 148, 29, 0.6);
+}
+
+.primary-btn:active:not([disabled]) {
+    transform: translateY(0);
+}
+
+.primary-btn[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: #333;
+    box-shadow: none;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* MODALE */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay[hidden] {
+    display: none !important;
+}
+
+.modal-content {
+    background: #082845;
+    padding: 40px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-actions .btn {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 20px;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+footer strong {
+    color: var(--primary-color);
+}
+

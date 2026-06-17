@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'Affiche - La Grande Nuit des Jumeaux</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        
+        <header>
+            <h1>La Grande NUIT DES JUMEAUX</h1>
+            <h2>3ème Édition - Bal Masqué</h2>
+            <p class="theme">Organisée par Carine & Carina</p>
+            
+            <!-- Compte à rebours -->
+            <div id="countdown" class="countdown-container">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <label>Jours</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <label>Heures</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <label>Min</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <label>Sec</label>
+                </div>
+            </div>
+
+            <p class="instruction">Personnalisez votre badge en cliquant sur le cercle ci-dessous ⬇️</p>
+        </header>
+
+        <!-- L'espace de travail WYSIWYG -->
+        <div class="poster-workspace" id="poster-workspace">
+            
+            <!-- Couche 1 : La photo recadrée (tout au fond) -->
+            <div class="user-photo-layer" id="user-photo-layer">
+                <img src="" alt="" class="final-user-photo" id="final-user-photo" hidden>
+            </div>
+            
+            <!-- Couche 2 : L'affiche (Bal Masqué) -->
+            <img src="Fond.png" alt="Affiche" class="poster-bg" id="poster-bg">
+            
+            <!-- Couche 3 : La zone cliquable invisible par dessus (pour déclencher l'upload) -->
+            <div class="click-zone" id="click-zone" title="Cliquez pour ajouter une photo">
+                <div class="placeholder-content" id="placeholder-content">
+                    <span class="plus-icon">+</span>
+                    <span class="text">Ajouter<br>votre photo</span>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="actions">
+            <input type="file" id="image-upload" accept="image/png, image/jpeg, image/jpg" hidden>
+            <button id="btn-export" class="btn primary-btn" disabled>Télécharger mon affiche ⬇️</button>
+        </div>
+
+    </div>
+
+    <!-- Modale de recadrage -->
+    <div class="modal-overlay" id="cropper-modal" hidden>
+        <div class="modal-content">
+            <h3>Recadrez votre photo</h3>
+            <div class="cropper-container">
+                <img id="image-to-crop" src="" alt="Photo à recadrer">
+            </div>
+            <div class="modal-actions">
+                <button id="btn-validate" class="btn primary-btn">Valider</button>
+                <button id="btn-cancel" class="btn secondary-btn">Annuler</button>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>La Grande Nuit des Jumeaux - Édition 2026</p>
+        <p>Développé par <strong>Almir.dev</strong></p>
+    </footer>
+    <!-- Canvas caché pour l'export HD -->
+    <canvas id="export-canvas" hidden></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="countdown.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
